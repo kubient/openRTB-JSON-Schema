@@ -1,0 +1,570 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "http://yourdomain.com/schemas/myschema.json",
+  "title" : "OpenRTB 2.5 JSON Schema",
+  "description" : "OpenRTB 2.5 JSON Schema for Validation Purposes Only",
+  "definitions" : {
+    "source" : {
+      "type" : "object",
+      "properties" : {
+        "fd" : {"type" : "integer"},
+        "tid" : {"type" : "string"},
+        "pchain" : {"type" : "string"},
+        "ext" : {}
+      }
+    },
+    "regs" : {
+      "type" : "object",
+      "properties" : {
+        "coppa" : {"type" : "integer"},
+        "ext" : {}
+      }
+    },
+    "imp" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "metric" : {"type" : "array",
+                    "items" : {"$ref" : "#/definitions/metric"}
+        },
+        "banner" : {"$ref" : "#/definitions/banner"},
+        "video" : {"$ref" : "#/definitions/video"},
+        "audio" : {"$ref" : "#/definitions/audio"},
+        "native" : {"$ref" : "#/definitions/native"},
+        "pmp" : {"$ref" : "#/definitions/pmp"},
+        "displaymanager" : {"type" : "string"},
+        "displaymanagerver" : {"type" : "string"},
+        "instl" : {"type" : "integer"},
+        "tagid" : {"type" : "string"},
+        "bidfloor" : {"type" : "number"},
+        "bidfloorcur" : {"type" : "string"},
+        "clickbrowser" : {"type" : "integer"},
+        "secure" : {"type" : "integer"},
+        "iframebuster" : {"type" : "array",
+                          "items" : {"type" : "string"}
+        },
+        "exp" : {"type" : "integer"},
+        "ext" : {}
+      },
+      "required": ["id"]
+    },
+    "metric" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {"type" : "string"},
+        "value" : {"type" : "number"},
+        "vendor" : {"type" : "string"},
+        "ext" : {}
+      },
+      "required" : ["type","value"]
+    },
+    "banner" : {
+      "type" : "object",
+      "properties" : {
+        "format" : {"type" : "array",
+                    "items" : {"$ref" : "#/definitions/format"}
+        },
+        "w" : {"type" : "integer"},
+        "h" : {"type" : "integer"},
+        "btype" : {"type" : "array",
+                  "items" : {
+                    "type" : "integer",
+                    "minimum" : 1,
+                    "maximum" : 4
+                  }
+        },
+        "battr" : {"type" : "array",
+                    "items" : {
+                      "type" : "integer",
+                      "minimum" : 1,
+                      "maximum" : 17
+                    }
+        },
+        "pos" : {
+          "type" : "integer",
+          "minimum" : 0,
+          "maximum" : 7
+        },
+        "mimes" : {"type" : "array",
+                   "items" : {"type" : "string"}
+        },
+        "topframe" : {"type" : "integer"},
+        "expdir" : {"type" : "array",
+                    "items" : {
+                      "type" : "integer",
+                      "minimum" : 1,
+                      "maximum" : 5
+                    }
+        },
+        "api" : {"type" : "array",
+                 "items" : {
+                   "type" : "integer",
+                   "minimum" : 1,
+                   "maximum" : 6
+                 }
+        },
+        "id" : {"type" : "string"},
+        "vcm" : {"type" : "integer"},
+        "ext" : {}
+      }
+    },
+    "video" : {
+      "type" : "object",
+      "properties" : {
+        "mimes" : {"type" : "array",
+                   "items" : {"type" : "string"}
+        },
+        "minduration" : {"type" : "integer"},
+        "maxduration" : {"type" : "integer"},
+        "protocols" : {"type" : "array",
+                       "items" : {
+                         "type" : "integer",
+                         "minimum" : 1,
+                         "maximum" : 10
+                       }
+        },
+        "w" : {"type" : "integer"},
+        "h" : {"type" : "integer"},
+        "startdelay" : {"type" : "integer"},
+        "placement" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 5
+        },
+        "linearity" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 2
+        },
+        "skip" : {"type" : "integer"},
+        "skipmin" : {"type" : "integer"},
+        "skipafter" : {"type" : "integer"},
+        "sequence" : {"type" : "integer"},
+        "battr" : {"type" : "array",
+                   "items" : {"type" : "integer" }
+        },
+        "maxextended" : {"type" : "integer"},
+        "minbitrate" : {"type" : "integer"},
+        "maxbitrate" : {"type" : "integer"},
+        "boxingallowed" : {"type" : "integer"},
+        "playbackmethod" : {"type" : "array",
+                            "items" : {
+                              "type" :"integer",
+                              "minimum" : 1,
+                              "maximum" : 6
+                            }
+        },
+        "playbackend" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 3
+        },
+        "delivery" : {"type" : "array",
+                      "items" : {
+                        "type" : "integer",
+                        "minimum" : 1,
+                        "maximum" : 3
+                      }
+        },
+        "pos" : {"type" : "integer"},
+        "companionad" : {"type" : "array",
+                         "items" : {"$ref" : "#/definitions/banner"}
+        },
+        "api" : {"type" : "array",
+                 "items" : {"type" : "integer"}
+        },
+        "companiontype" : {"type" : "array",
+                           "items" : {
+                             "type" : "integer",
+                             "minimum" : 1,
+                             "maximum" : 3
+                           }
+        },
+        "ext" : {}
+      },
+      "required" : ["mimes"]
+    },
+    "audio" : {
+      "type" : "object",
+      "properties" : {
+        "mimes" : {"type" : "array",
+                   "items" : {"type" : "string"}
+        },
+        "minduration" : {"type" : "integer"},
+        "maxduration" : {"type" : "integer"},
+        "protocols" : {"type" : "array",
+                       "items" : {"type" : "integer"}
+        },
+        "startdelay" : {"type" : "integer"},
+        "sequence" : {"type" : "integer"},
+        "battr" : {"type" : "array",
+                   "items" : {"type" : "integer" }
+        },
+        "maxextended" : {"type" : "integer"},
+        "minbitrate" : {"type" : "integer"},
+        "maxbitrate" : {"type" : "integer"},
+        "delivery" : {"type" : "array",
+                      "items" : {
+                        "type" : "integer",
+                        "minimum" : 1,
+                        "maximum" : 3
+                      }
+        },
+        "companionad" : {"type" : "array",
+                         "items" : {"$ref" : "#/definitions/banner"}
+        },
+        "api" : {"type" : "array",
+                 "items" : {"type" : "integer"}
+        },
+        "companiontype" : {"type" : "array",
+                           "items" : {
+                             "type" : "integer",
+                             "minimum" : 1,
+                             "maximum" : 3
+                           }
+        },
+        "maxseq" : {"type" : "integer"},
+        "feed" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 3
+        },
+        "stitched" : {"type" : "integer"},
+        "nvol" : {
+          "type" : "integer",
+          "minimum" : 0,
+          "maximum" : 4
+        },
+        "ext" : {}
+      },
+      "required" : ["mimes"]
+    },
+    "native" : {
+      "type" : "object",
+      "properties" : {
+        "request" : {"type" : "string"},
+        "ver" : {"type" : "string"},
+        "api" : {"type" : "array",
+                 "items" : {"type" : "integer"}
+        },
+        "battr" : {"type" : "array",
+                   "items" : {"type" : "integer" }
+        },
+        "ext" : {}
+      },
+      "required" : ["request"]
+    },
+    "format" : {
+      "type" : "object",
+      "properties" : {
+        "w" : {"type" : "integer"},
+        "h" : {"type" : "integer"},
+        "wratio" : {"type" : "integer"},
+        "hratio" : {"type" : "integer"},
+        "wmin" : {"type" : "integer"},
+        "ext" : {}
+      }
+    },
+    "pmp" : {
+      "type" : "object",
+      "properties" : {
+        "private_auction" : {"type" : "integer"},
+        "deals" : {"type" : "array",
+                   "items" : {"$ref" : "#/definitions/deal"}
+        },
+        "ext" : {}
+      }
+    },
+    "deal" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "bidfloor" : {"type" : "number"},
+        "bidfloorcur" : {"type" : "string"},
+        "at" : {"type" : "integer"},
+        "wseat" : {"type" : "array",
+                   "items" : {"type" : "string"}
+        },
+        "wadomain" : {"type": "array",
+                      "items" : {"type" : "string"}
+        },
+        "ext" : {}
+      },
+      "required" : ["id"]
+    },
+    "site" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "name" : {"type" : "string"},
+        "domain" : {"type" : "string"},
+        "cat" : {"type" : "array",
+                 "items" : {"type" : "string"}
+        },
+        "sectioncat" : {"type" : "array",
+                 "items" : {"type" : "string"}
+        },
+        "pagecat" : {"type" : "array",
+                 "items" : {"type" : "string"}
+        },
+        "page" : {"type" : "string"},
+        "ref" : {"type" : "string"},
+        "search" : {"type" : "string"},
+        "mobile" : {"type" : "integer"},
+        "privacypolicy" : {"type" : "integer"},
+        "publisher" : {"$ref" : "#/definitions/publisher"},
+        "content" : {"$ref" : "#/definitions/content"},
+        "keywords" : {"type" : "string"},
+        "ext" : {}
+      }
+    },
+    "app" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "name" : {"type" : "string"},
+        "bundle" : {"type" : "string"},
+        "domain" : {"type" : "string"},
+        "storeurl" : {"type" : "string"},
+        "cat" : {"type" : "array",
+                 "items" : {"type" : "string"}
+        },
+        "sectioncat" : {"type" : "array",
+                 "items" : {"type" : "string"}
+        },
+        "pagecat" : {"type" : "array",
+                 "items" : {"type" : "string"}
+        },
+        "ver" : {"type" : "string"},
+        "privacypolicy" : {"type" : "integer"},
+        "paid" : {"type" : "integer"},
+        "publisher" : {"$ref" : "#/definitions/publisher"},
+        "content" : {"$ref" : "#/definitions/content"},
+        "keywords" : {"type" : "string"},
+        "ext" : {}
+      }
+    },
+    "publisher" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "name" : {"type" : "string"},
+        "cat" : {"type" : "array",
+                 "items" : {"type" : "string"}
+        },
+        "domain" : {"type" : "string"},
+        "ext" : {}
+      }
+    },
+    "content" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "episode" : {"type" : "integer"},
+        "title" : {"type" : "string"},
+        "series" : {"type" : "string"},
+        "season" : {"type" : "string"},
+        "artist" : {"type" : "string"},
+        "genre" : {"type" : "string"},
+        "album" : {"type" : "string"},
+        "isrc" : {"type" : "string"},
+        "producer" : {"$ref" : "#/definitions/producer"},
+        "url" : {"type" : "string"},
+        "cat" : {"type" : "array",
+                 "items" : {"type" : "string"}
+        },
+        "prodq" : {
+          "type" : "integer",
+          "minimum" : 0,
+          "maximum" : 3
+        },
+        "context" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 7
+        },
+        "contentrating" : {"type" : "string"},
+        "userrating" : {"type" : "string"},
+        "qagmediarating" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 3
+        },
+        "keywords" : {"type" : "string"},
+        "livestream" : {"type" : "integer"},
+        "sourcerelationship" : {"type" : "integer"},
+        "len" : {"type" : "integer"},
+        "language" : {"type" : "string"},
+        "embeddable" : {"type" : "integer"},
+        "data" : {"type" : "array",
+                  "items" : {"$ref" : "#/definitions/data"}
+        },
+        "ext" : {}
+      }
+    },
+    "producer" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "name" : {"name" : "string"},
+        "cat" : {"type" : "array",
+                 "items" : {"type" : "string"}
+        },
+        "domain" : {"type" : "string"},
+        "ext" : {}
+      }
+    },
+    "device" : {
+      "type" : "object",
+      "properties" : {
+        "ua" : {"type" : "string"},
+        "geo" : {"$ref" : "#/definitions/geo"},
+        "dnt" : {"type" : "integer"},
+        "lmt" : {"type" : "integer"},
+        "ip" : {"type" : "string"},
+        "ipv6" : {"type" : "string"},
+        "devicetype" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 7
+        },
+        "make" : {"type" : "string"},
+        "model" : {"type" : "string"},
+        "os" : {"type" : "string"},
+        "osv" : {"type" : "string"},
+        "hwv" : {"type" : "string"},
+        "h" : {"type" : "integer"},
+        "w" : {"type" : "integer"},
+        "ppi" : {"type" : "integer"},
+        "pxratio" : {"type" : "number"},
+        "js" : {"type" : "integer"},
+        "geofetch" : {"type" : "integer"},
+        "flashver" : {"type" : "string"},
+        "language" : {"type" : "string"},
+        "carrier" : {"type" : "string"},
+        "mccmnc" : {"type" : "string"},
+        "connectiontype" : {
+          "type" : "integer",
+          "minimum" : 0,
+          "maximum" : 6
+        },
+        "ifa" : {"type" : "string"},
+        "didsha1" : {"type" : "string"},
+        "didmd5" : {"type" : "string"},
+        "dpidsha1" : {"type" : "string"},
+        "dpidmd5" : {"type" : "string"},
+        "macsha1" : {"type" : "string"},
+        "macmd5" : {"type" : "string"},
+        "ext" : {}
+      }
+    },
+    "geo" : {
+      "type" : "object",
+      "properties" : {
+        "lat" : {"type" : "number"},
+        "lon" : {"type" : "number"},
+        "type" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 3
+        },
+        "accuracy" : {"type" : "integer"},
+        "lastfix" : {"type" : "integer"},
+        "ipservice" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 4
+        },
+        "country" : {"type" : "string"},
+        "region" : {"type" : "string"},
+        "regionfipa104" : {"type" : "string"},
+        "metro" : {"type" : "string"},
+        "city" : {"type" : "string"},
+        "zip" : {"type" : "string"},
+        "utcoffset" : {"type" : "integer"},
+        "ext" : {}
+      }
+    },
+    "user" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "buyeruid" : {"type" : "string"},
+        "yob" : {"type" : "integer"},
+        "gender" : {"type" : "string"},
+        "keywords" : {"type" : "string"},
+        "customdata" : {"type" : "string"},
+        "geo" : {"$ref" : "#/definitions/geo"},
+        "data" : {"type" : "array",
+                  "items" : {"$ref" : "#/defintions/data"}
+        },
+        "ext" : {}
+      }
+    },
+    "data" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "name" : {"type" : "string"},
+        "segment" : {"type" : "array",
+                     "items" : {"$ref" : "#/defintions/segment"}
+        },
+        "ext" : {}
+      }
+    },
+    "segment" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {"type" : "string"},
+        "name" : {"type" : "string"},
+        "value" : {"type" : "string"},
+        "ext" : {}
+      }
+    }
+  },
+  "type" : "object",
+  "properties" : {
+    "id" : {"type" : "string"},
+    "imp" : {"type" : "array",
+             "items" : {"$ref" : "#/defintions/imp"}
+    },
+    "site" : {"type" : "array",
+              "items" : {"$ref" : "#/definitions/site"}
+    },
+    "app" : {"type" : "array",
+             "items" : {"$ref" : "#/definitions/app"}
+    },
+    "device" : {"type" : "array",
+                "items" : {"$ref" : "#/definitions/device"}
+    },
+    "user" : {"type" : "array",
+              "items" : {"$ref" : "#/defintions/user"}
+    },
+    "test" : {"type" : "integer"},
+    "at" : {"type" : "integer"},
+    "tmax" : {"type" : "integer"},
+    "wseat": {"type" : "array",
+              "items" : {"type" : "string"}
+    },
+    "bseat" : {"type" : "array",
+              "items" : {"type" : "string"}
+    },
+    "allimps" : {"type" : "integer"},
+    "cur" : {"type" : "array",
+              "items" : {"type" : "string"}
+    },
+    "wlang" : {"type" : "array",
+              "items" : {"type" : "string"}
+    },
+    "bcat" : {"type" : "array",
+              "items" : {"type" : "string"}
+    },
+    "badv" : {"type" : "array",
+              "items" : {"type" : "string"}
+    },
+    "source" : {"$ref" : "#/definitions/source"},
+    "regs" : {"$ref" : "#/definitions/regs"},
+    "ext" : {}
+  },
+  "required" : ["id","imp"]
+}
