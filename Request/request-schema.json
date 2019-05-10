@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/schema#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "$id": "https://github.com/kubient/openRTB-JSON-Schema/raw/master/Request/request-schema.json",
   "title" : "OpenRTB 2.5 JSON Schema",
   "description" : "OpenRTB 2.5 JSON Schema for Validation Purposes Only",
@@ -496,7 +496,7 @@
         "customdata" : {"type" : "string"},
         "geo" : {"$ref" : "#/definitions/geo"},
         "data" : {"type" : "array",
-                  "items" : {"$ref" : "#/defintions/data"}
+                  "items" : {"$ref" : "#/definitions/data"}
         },
         "ext" : {}
       }
@@ -507,7 +507,7 @@
         "id" : {"type" : "string"},
         "name" : {"type" : "string"},
         "segment" : {"type" : "array",
-                     "items" : {"$ref" : "#/defintions/segment"}
+                     "items" : {"$ref" : "#/definitions/segment"}
         },
         "ext" : {}
       }
@@ -526,7 +526,7 @@
   "properties" : {
     "id" : {"type" : "string"},
     "imp" : {"type" : "array",
-             "items" : {"$ref" : "#/defintions/imp"}
+             "items" : {"$ref" : "#/definitions/imp"}
     },
     "site" : {
       "anyOf": [
@@ -554,7 +554,7 @@
                 { "type": "array" },
                 { "type": "object" }
               ],
-      "items" : {"$ref" : "#/defintions/user"}
+      "items" : {"$ref" : "#/definitions/user"}
     },
     "test" : {"type" : "integer"},
     "at" : {"type" : "integer"},
