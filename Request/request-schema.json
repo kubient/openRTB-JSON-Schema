@@ -528,17 +528,33 @@
     "imp" : {"type" : "array",
              "items" : {"$ref" : "#/defintions/imp"}
     },
-    "site" : {"type" : "array",
-              "items" : {"$ref" : "#/definitions/site"}
+    "site" : {
+      "anyOf": [
+                  { "type": "array" },
+                  { "type": "object" }
+                ],
+      "items" : {"$ref" : "#/definitions/site"}
     },
-    "app" : {"type" : "array",
-             "items" : {"$ref" : "#/definitions/app"}
+    "app" : {
+     "anyOf": [
+        { "type": "array" },
+        { "type": "object" }
+      ],
+     "items" : {"$ref" : "#/definitions/app"}
     },
-    "device" : {"type" : "array",
-                "items" : {"$ref" : "#/definitions/device"}
+    "device" : {
+      "anyOf": [
+                { "type": "array" },
+                { "type": "object" }
+              ],
+      "items" : {"$ref" : "#/definitions/device"}
     },
-    "user" : {"type" : "array",
-              "items" : {"$ref" : "#/defintions/user"}
+    "user" : {
+      "anyOf": [
+                { "type": "array" },
+                { "type": "object" }
+              ],
+      "items" : {"$ref" : "#/defintions/user"}
     },
     "test" : {"type" : "integer"},
     "at" : {"type" : "integer"},
